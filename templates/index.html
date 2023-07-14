@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='tailwind.css') }}"
+    />
+    <title>Flask + CV2 Human Detection</title>
+  </head>
+  <body
+    class="flex justify-center items-center flex-col h-[100vh] bg-slate-800"
+  >
+    {% if hdetected: %}
+    <div
+      class="bg-slate-700 h-[50%] w-[55%] flex justify-center items-center flex-col rounded-2xl"
+    >
+      <h1 class="text-white font-mono text-xl">
+        Human Detected: {{hdetected}}
+      </h1>
+      <img class="mt-4 rounded-2xl h-[70%] w-[65%]" src="{{ path }}" alt="" />
+    </div>
+    {% endif %}
+
+    <form class="mt-4" action="/" method="POST" enctype="multipart/form-data">
+      <input
+        required
+        class="text-white font-bold py-2 px-4 rounded"
+        type="file"
+        name="image"
+      />
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        type="submit"
+      >
+        Upload
+      </button>
+    </form>
+  </body>
+</html>
